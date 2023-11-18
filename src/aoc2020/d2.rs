@@ -1,5 +1,27 @@
 use prse::parse;
 
+pub struct AoC;
+
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let lines = data.lines()
+            .map(|l| parse!(l, "{}-{} {}: {}"))
+            .collect::<Vec<(usize, usize, char, &str)>>();
+
+        let res = policies(lines, p1_policy);
+        dbg!("{}", res);
+    }
+    
+    fn p2(&self, data: String) {
+        let lines = data.lines()
+            .map(|l| parse!(l, "{}-{} {}: {}"))
+            .collect::<Vec<(usize, usize, char, &str)>>();
+    
+        let res: u32 = policies(lines, p2_policy);
+        dbg!("{}", res);
+    }
+}
+
 
 fn p1_policy(low: usize, high: usize, policy: char, password: &str) -> bool {
     let len = password
@@ -28,28 +50,6 @@ fn policies(
         .sum()
 }
 
-
-pub struct Day;
-
-impl super::Day for Day {
-    fn p1(&self, data: String) {
-        let lines = data.lines()
-            .map(|l| parse!(l, "{}-{} {}: {}"))
-            .collect::<Vec<(usize, usize, char, &str)>>();
-
-        let res = policies(lines, p1_policy);
-        dbg!("{}", res);
-    }
-    
-    fn p2(&self, data: String) {
-        let lines = data.lines()
-            .map(|l| parse!(l, "{}-{} {}: {}"))
-            .collect::<Vec<(usize, usize, char, &str)>>();
-    
-        let res: u32 = policies(lines, p2_policy);
-        dbg!("{}", res);
-    }
-}
 
 #[cfg(test)]
 mod tests {

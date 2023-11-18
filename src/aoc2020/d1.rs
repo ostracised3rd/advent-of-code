@@ -1,6 +1,6 @@
 pub struct AoC;
 
-impl super::Day for AoC {
+impl advent_of_code::Day for AoC {
     fn p1(&self, data: String) {
         let inputs = data
             .lines()
