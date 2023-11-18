@@ -1,0 +1,11 @@
+[package]
+name = "advent-of-code-2020"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tracing = "0.1.36"
+tracing-subscriber = { version = "0.3.15", features = ["time"] }
+prse = "1.0.3"
