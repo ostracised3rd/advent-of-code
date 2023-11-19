@@ -1,18 +1,22 @@
-use std::{collections::HashMap, ops::RangeBounds};
+pub struct AoC;
 
-use advent_of_code::load_data;
-
-
-pub fn run() {
-    let data = load_data("data/aoc2021/d08.txt");
-    // println!("{}", p1(&data));
-    println!("{}", p2(&data));
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let res = p1(&data);
+        tracing::info!("{}", res);
+    }
+    
+    fn p2(&self, data: String) {
+        let res = p2(&data);
+        tracing::info!("{}", res);
+    }
 }
+
 
 
 fn p1(data: &str) -> usize {
     data.lines()
-        .map(|s| {
+        .flat_map(|s| {
             s.split_once(" | ")
              .unwrap()
              .1
@@ -21,7 +25,6 @@ fn p1(data: &str) -> usize {
              .filter(|x| [2, 3, 4, 7].contains(x))
              .collect::<Vec<usize>>()
         })
-        .flatten()
         .collect::<Vec<usize>>()
         .len()
 }

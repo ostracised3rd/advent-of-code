@@ -3,13 +3,13 @@ pub struct AoC;
 
 impl advent_of_code::Day for AoC {
     fn p1(&self, data: String) {
-        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
+        let data = data.split(',').map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
         let res = thats_a_rotate(18, &data);
         println!("{}", res);
     }
     
     fn p2(&self, data: String) {
-        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
+        let data = data.split(',').map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
         let res = thats_a_rotate(18, &data);
         println!("{}", res);
     }

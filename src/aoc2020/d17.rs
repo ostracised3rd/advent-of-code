@@ -1,4 +1,35 @@
+pub struct AoC;
 
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let p1 = cubed(&data);
+        println!("c0:{}", its_alive(&p1));
+    }
+    
+    fn p2(&self, data: String) {
+        let p2 = hypercube(&data);
+        println!("{:?}", p2);
+
+        let c1 = p2_next_gen(&p2);
+        println!("{:?}", &c1);
+        println!("c1:{}", p2_its_alive(&c1));
+
+        let c2 = p2_next_gen(&c1);
+        println!("c2:{}", p2_its_alive(&c2));
+
+        let c3 = p2_next_gen(&c2);
+        println!("c3:{}", p2_its_alive(&c3));
+
+        let c4 = p2_next_gen(&c3);
+        println!("c4:{}", p2_its_alive(&c4));
+
+        let c5 = p2_next_gen(&c4);
+        println!("c5:{}", p2_its_alive(&c5));
+
+        let c6 = p2_next_gen(&c5);
+        println!("c6:{}", p2_its_alive(&c6));
+    }
+}
 
 // data parsers
 fn root(x: &str) -> Vec<i32> {
@@ -195,53 +226,6 @@ fn p2_its_alive(data: &Vec<Vec<Vec<Vec<i32>>>>) -> i32 {
                 .sum::<i32>())
             .sum::<i32>())
         .sum::<i32>()
-}
-
-
-
-pub fn run(_part: String) {
-//     let data = ".#.
-// ..#
-// ###";
-
-    let data = load_data();
-    let p2 = hypercube(data);
-    println!("{:?}", p2);
-
-
-    // let p1 = cubed(data);
-    // println!("c0:{}", its_alive(&p1));
-
-    let c1 = p2_next_gen(&p2);
-    println!("{:?}", &c1);
-    println!("c1:{}", p2_its_alive(&c1));
-
-    let c2 = p2_next_gen(&c1);
-    println!("c2:{}", p2_its_alive(&c2));
-
-    let c3 = p2_next_gen(&c2);
-    println!("c3:{}", p2_its_alive(&c3));
-
-    let c4 = p2_next_gen(&c3);
-    println!("c4:{}", p2_its_alive(&c4));
-
-    let c5 = p2_next_gen(&c4);
-    println!("c5:{}", p2_its_alive(&c5));
-
-    let c6 = p2_next_gen(&c5);
-    println!("c6:{}", p2_its_alive(&c6));
-}
-
-
-fn load_data() -> &'static str {
-"#....#.#
-..##.##.
-#..#..#.
-.#..#..#
-.#..#...
-##.#####
-#..#..#.
-##.##..#"
 }
 
 

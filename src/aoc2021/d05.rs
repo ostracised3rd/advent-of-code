@@ -20,7 +20,7 @@ fn data_parser(data: &str) -> Vec<((i32, i32), (i32, i32))> {
         .map(|x| {
             let d = x.split(" -> ")
                 .map(|y| { 
-                    let c =y.split(",")
+                    let c =y.split(',')
                         .map(|z| z.parse().unwrap())
                         .collect::<Vec<i32>>();
                     (c[0], c[1])

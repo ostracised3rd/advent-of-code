@@ -1,3 +1,5 @@
+#![allow(clippy::style)]
+
 use tracing::error;
 // mod lib;
 mod aoc2020;

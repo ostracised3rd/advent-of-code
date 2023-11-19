@@ -4,19 +4,17 @@ pub struct AoC;
 
 impl advent_of_code::Day for AoC {
     fn p1(&self, data: String) {
-        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
+        let data = data.split(',').map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
         let res = p1(data);
         println!("{:?}", res);
     }
     
     fn p2(&self, data: String) {
-        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
+        let data = data.split(',').map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
         let res = p2(data);
         println!("{:?}", res);
     }
 }
-
-
 
 struct Cache {
     memory: HashMap<i32, i32>
@@ -39,7 +37,7 @@ impl Cache {
     }
 }
 
-fn probable_p1(data: Vec<i32>)  -> i32 {
+fn _probable_p1(data: Vec<i32>)  -> i32 {
     // is this correct??
     let mut p: HashMap<i32, i32> = HashMap::new(); 
     for i in data.iter() {

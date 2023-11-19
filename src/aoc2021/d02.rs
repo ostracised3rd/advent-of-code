@@ -18,7 +18,7 @@ impl advent_of_code::Day for AoC {
 fn p1(data: &str) -> i32 {
     let res = data.lines()
         .fold((0, 0), |(x, y), s| {
-            let (command, val) = s.split_once(" ").unwrap();
+            let (command, val) = s.split_once(' ').unwrap();
             let val: i32 = val.trim().parse().unwrap();
             match command  {
                 "down" =>    (x, y+val),
@@ -35,7 +35,7 @@ fn p1(data: &str) -> i32 {
 fn p2(data: &str) -> i64 {
     let res = data.lines()
         .fold((0, 0, 0), |(x, y, aim), s| {
-            let (command, val) = s.split_once(" ").unwrap();
+            let (command, val) = s.split_once(' ').unwrap();
             let val: i64 = val.trim().parse().unwrap();
             match command  {
                 "down" =>    (x, y, aim+val),
