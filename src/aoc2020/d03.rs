@@ -1,4 +1,46 @@
+// TODO: solve this again?
+pub struct AoC;
 
+impl advent_of_code::Day for AoC {
+    // TODO: what is part 1 and 2 for this?
+    fn p1(&self, data: String) {
+        let grid = prepare_map(&data);
+    
+        let patterns: Vec<(usize, usize)> = vec![
+            (1, 1),
+            (1, 3),
+            (1, 5),
+            (1, 7),
+            (2, 1),
+        ];
+    
+        let mut trees = 1;
+        for (x, y) in patterns {
+            trees *= stepping(&grid, x, y) as u64;
+        }
+    
+        tracing::info!("{}", trees);
+    }
+    
+    fn p2(&self, data: String) {
+        let grid = prepare_map(&data);
+    
+        let patterns: Vec<(usize, usize)> = vec![
+            (1, 1),
+            (1, 3),
+            (1, 5),
+            (1, 7),
+            (2, 1),
+        ];
+    
+        let mut trees = 1;
+        for (x, y) in patterns {
+            trees *= stepping(&grid, x, y) as u64;
+        }
+    
+        tracing::info!("{}", trees);
+    }
+}
 
 
 fn map_column(row: &str) -> Vec<u32> {

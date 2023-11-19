@@ -1,5 +1,26 @@
 
+pub struct AoC;
 
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let parsed = prepare_data(&data);
+
+        let count = parsed.iter()
+            .map(|x| validate(x))
+            .reduce(|a, b| a+b );
+
+        tracing::info!("{}", count.unwrap());
+    }
+    
+    fn p2(&self, data: String) {
+        let parsed = p2_prepare_data(&data);
+        let count = parsed.iter()
+            .map(|x| p2_validate(x))
+            .reduce(|a, b| a+b );
+
+        tracing::info!("{}", count.unwrap());
+    }
+}
 
 fn prepare_data(raw: &str) -> Vec<Vec<&str>> {
     raw.split("\n\n")

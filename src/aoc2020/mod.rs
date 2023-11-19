@@ -1,23 +1,25 @@
 use tracing::error;
 use advent_of_code::Day;
 
-mod d1;
-mod d2;
-mod d3;
-mod d4;
-mod d5;
-mod d6;
-mod d7;
-mod d8;
-mod d9;
+mod d01;
+mod d02;
+mod d03;
+mod d04;
+mod d05;
+mod d06;
+mod d07;
+mod d08;
+mod d09;
 mod d16;
 mod d17;
 
 
-pub fn run_day(day: &str, part: advent_of_code::Part) {
+pub fn run_day(day: &str, part: u8) {
     match day {
-        "day1" => d1::AoC.run("storage/day1.txt", part),
-        "day2" => d2::AoC.run("storage/day2.txt", part),
+        "day1" => d01::AoC.run("storage/day1.txt", part),
+        "day2" => d02::AoC.run("storage/day2.txt", part),
+        "day3" => d03::AoC.run("storage/day3.txt", part),
+        "day4" => d04::AoC.run("storage/day4.txt", part),
         _ => error!("day not found {}", day),
     }
 }

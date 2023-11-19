@@ -8,7 +8,7 @@ fn main() {
 
     let year = "2020";
     let day = "day2";
-    let part = advent_of_code::Part::P2;
+    let part = 1;
 
     match year {
         "2020" =>  aoc2020::run_day(day, part),

@@ -1,6 +1,29 @@
 
-use advent_of_code::load_data;
+pub struct AoC;
 
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let data = data.lines()
+        .map(|x| x.trim().parse().unwrap())
+        .collect();
+
+        let data = three_sums(data);
+
+        let count = increase_counter(data);
+        println!("{}", count);
+    }
+    
+    fn p2(&self, data: String) {
+        let data = data.lines()
+        .map(|x| x.trim().parse().unwrap())
+        .collect();
+
+        let data = three_sums(data);
+
+        let count = increase_counter(data);
+        println!("{}", count);
+    }
+}
 
 fn increase_counter(data: Vec::<i32>) -> i32 {
     data.iter()
@@ -21,22 +44,6 @@ fn three_sums(data: Vec::<i32>) -> Vec::<i32> {
     sums
 }
 
-
-pub fn run() {
-    let data = data_parser();
-
-    let data = three_sums(data);
-
-    let count = increase_counter(data);
-    println!("{}", count);
-}
-
-fn data_parser() -> Vec<i32> {
-    let data = load_data("data/aoc2021/d01.txt");
-    data.lines()
-        .map(|x| x.trim().parse().unwrap())
-        .collect()
-}
 
 
 #[cfg(test)]

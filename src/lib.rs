@@ -1,23 +1,19 @@
 use std::fs;
-
+use tracing::error;
 
 pub fn load_data(filename: &str) -> String {
     fs::read_to_string(filename).expect(&format!("file {} couldn't be read", filename))
 }
 
-pub enum Part {
-    P1,
-    P2,
-}
-
 pub trait Day {
     fn p1(&self, data: String);
     fn p2(&self, data: String);
-    fn run(&self, input_file: &str, part: Part) {
+    fn run(&self, input_file: &str, part: u8) {
         let data = load_data(input_file);
         match part {
-            Part::P1 => self.p1(data),
-            Part::P2 => self.p2(data),
+            1 => self.p1(data),
+            2 => self.p2(data),
+            _ => error!("doesn't exists")
         }
     }
 }
