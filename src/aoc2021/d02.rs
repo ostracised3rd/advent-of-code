@@ -2,7 +2,21 @@ pub struct AoC;
 
 impl advent_of_code::Day for AoC {
     fn p1(&self, data: String) {
-        let res = data.lines()
+        let res = p1(&data);
+
+        tracing::info!("{}", res)
+    }
+    
+    fn p2(&self, data: String) {
+        let res = p2(&data);
+
+        tracing::info!("{}", res)
+    }
+}
+
+
+fn p1(data: &str) -> i32 {
+    let res = data.lines()
         .fold((0, 0), |(x, y), s| {
             let (command, val) = s.split_once(" ").unwrap();
             let val: i32 = val.trim().parse().unwrap();
@@ -14,11 +28,12 @@ impl advent_of_code::Day for AoC {
             }
         });
 
-        tracing::info!("{}", res.0 * res.1)
-    }
-    
-    fn p2(&self, data: String) {
-        let res = data.lines()
+    res.0 * res.1
+}
+
+
+fn p2(data: &str) -> i64 {
+    let res = data.lines()
         .fold((0, 0, 0), |(x, y, aim), s| {
             let (command, val) = s.split_once(" ").unwrap();
             let val: i64 = val.trim().parse().unwrap();
@@ -30,8 +45,7 @@ impl advent_of_code::Day for AoC {
             }
         });
 
-        tracing::info!("{}", res.0 * res.1)
-    }
+    res.0 * res.1
 }
 
 
@@ -48,7 +62,7 @@ up 3
 down 8
 forward 2";
 
-        assert_eq!(150, AoC.p1(String::from(data)));
+        assert_eq!(150, p1(data));
     }
 
     #[test]
@@ -60,6 +74,6 @@ up 3
 down 8
 forward 2";
 
-        assert_eq!(900, AoC.p2(data));
+        assert_eq!(900, p2(data));
     }
 }

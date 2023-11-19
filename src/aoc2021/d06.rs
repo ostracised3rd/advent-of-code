@@ -1,12 +1,18 @@
-use std::collections::HashMap;
+// TODO: solve this again
+pub struct AoC;
 
-use crate::helpers::load_data;
-
-pub fn run() {
-    let data = load_data("data/aoc2021/d06.txt");
-    let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
-    let res = thats_a_rotate(18, &data);
-    println!("{}", res);
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
+        let res = thats_a_rotate(18, &data);
+        println!("{}", res);
+    }
+    
+    fn p2(&self, data: String) {
+        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
+        let res = thats_a_rotate(18, &data);
+        println!("{}", res);
+    }
 }
 
 
@@ -17,7 +23,7 @@ fn thats_a_rotate(days: u32, data: &Vec<usize>) -> i64 {
         gens[*i] += 1;
     }
 
-    for i in 0..days {
+    for _i in 0..days {
         gens.rotate_left(1);
         gens[6] += gens[8];
     }

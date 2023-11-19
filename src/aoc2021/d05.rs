@@ -1,6 +1,19 @@
-use crate::helpers::load_data;
-use std::collections::{HashMap, hash_map::Entry};
-use std::ops::Add;
+use std::collections::HashMap;
+
+pub struct AoC;
+
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let res = p1(&data);
+        tracing::info!("{}", res)
+    }
+    
+    fn p2(&self, data: String) {
+        let res = p2(&data);
+        tracing::info!("{}", res)
+    }
+}
+
 
 fn data_parser(data: &str) -> Vec<((i32, i32), (i32, i32))> {
     data.lines()
@@ -79,16 +92,6 @@ fn p2(data: &str) -> u32 {
     let res = data_parser(data);
     let res = lining(res);
     res.iter().fold(0, |c, x| if x.1 > &1 {c+1} else {c})
-}
-
-
-pub fn run() {
-    let data = load_data("data/aoc2021/d05.txt");
-    
-    // let res = p1(&data);
-    let res = p2(&data);
-    println!("{}", res);
-
 }
 
 

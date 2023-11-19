@@ -1,5 +1,19 @@
 
-use crate::helpers::load_data;
+pub struct AoC;
+
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let (len, pop) = population(&data);
+        let res = p1(len, pop);
+        println!("{}", res);
+    }
+    
+    fn p2(&self, data: String) {
+        let res = p2(&data);
+        println!("{}", res);
+    }
+}
+
 
 
 fn conversion(data: Vec<u32>) -> u32 {
@@ -81,14 +95,6 @@ fn p2(data: &str) -> u32 {
     conversion(oxy) * conversion(co2)
 }
 
-
-pub fn run() {
-    let data = load_data("data/aoc2021/d03.txt");
-    // let (len, pop) = population(&data);
-    // let res = p1(len, pop);
-    let res = p2(&data);
-    println!("{}", res);
-}
 
 
 #[cfg(test)]

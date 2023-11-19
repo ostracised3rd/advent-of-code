@@ -1,5 +1,21 @@
 use std::collections::HashMap;
-use crate::helpers::load_data;
+
+pub struct AoC;
+
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
+        let res = p1(data);
+        println!("{:?}", res);
+    }
+    
+    fn p2(&self, data: String) {
+        let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
+        let res = p2(data);
+        println!("{:?}", res);
+    }
+}
+
 
 
 struct Cache {
@@ -22,15 +38,6 @@ impl Cache {
         (num * (num+1)) / 2
     }
 }
-
-
-pub fn run() {
-    let data = load_data("data/aoc2021/d07.txt");
-    let data = data.split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
-    let res = p2(data);
-    println!("{:?}", res);
-}
-
 
 fn probable_p1(data: Vec<i32>)  -> i32 {
     // is this correct??

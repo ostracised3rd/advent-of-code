@@ -1,6 +1,6 @@
 use std::{collections::HashMap, ops::RangeBounds};
 
-use crate::helpers::load_data;
+use advent_of_code::load_data;
 
 
 pub fn run() {

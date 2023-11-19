@@ -1,4 +1,23 @@
-use crate::helpers::load_data;
+pub struct AoC;
+
+impl advent_of_code::Day for AoC {
+    fn p1(&self, data: String) {
+        let (numbers, boards) = data_parser(data);
+        if let Some((num, board)) = call_numbers(numbers, boards) {
+            let res = num * board.count();
+            println!("{}", res);
+        }
+    }
+    
+    fn p2(&self, data: String) {
+        let (numbers, boards) = data_parser(data);
+        if let Some((num, board)) = pick_last_winner(numbers, boards) {
+            let res = num * board.count();
+            println!("{}", res);
+        }
+    }
+}
+
 
 
 #[derive(Debug, Clone)]
@@ -94,7 +113,7 @@ fn gen_boards(data: &str) -> Vec<Board> {
 }
 
 
-fn data_parser() -> (Vec<u32>, Vec<Board>) {
+fn data_parser(data: String) -> (Vec<u32>, Vec<Board>) {
     let numbers = vec![
         1,76,38,96,62,41,27,33,4,2,94,15,89,25,66,14,30,0,71,21,48,44,87,73,60,50,77,45,29,
         18,5,99,65,16,93,95,37,3,52,32,46,80,98,63,92,24,35,55,12,81,51,17,70,78,61,91,54,8,
@@ -102,7 +121,6 @@ fn data_parser() -> (Vec<u32>, Vec<Board>) {
         84,97,11,85,26,69,23,59,82,88,34,56,13
     ];
 
-    let data = load_data("data/aoc2021/d04.txt");
     let boards = gen_boards(&data);
 
     (numbers, boards)
@@ -140,30 +158,6 @@ fn pick_last_winner(numbers: Vec<u32>, mut boards: Vec<Board>) -> Option<(u32, B
     
     None
 }
-
-
-fn p1() {
-    let (numbers, boards) = data_parser();
-    if let Some((num, board)) = call_numbers(numbers, boards) {
-        let res = num * board.count();
-        println!("{}", res);
-    }
-}
-
-
-fn p2() {
-    let (numbers, boards) = data_parser();
-    if let Some((num, board)) = pick_last_winner(numbers, boards) {
-        let res = num * board.count();
-        println!("{}", res);
-    }
-}
-
-
-pub fn run() {
-    // p1();
-    p2();
-} 
 
 
 #[cfg(test)]

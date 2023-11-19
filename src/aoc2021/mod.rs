@@ -11,10 +11,10 @@ mod d07;
 mod d08;
 
 
-pub fn run_day(day: &str, part: advent_of_code::Part) {
+pub fn run_day(day: &str, part: u8) {
     match day {
-        // "day1" => d1::AoC.run("storage/day1.txt", part),
-        // "day2" => d2::AoC.run("storage/day2.txt", part),
+        "day1" => d01::AoC.run("storage/day1.txt", part),
+        "day2" => d02::AoC.run("storage/day2.txt", part),
         _ => error!("day not found {}", day),
     }
 }
