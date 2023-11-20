@@ -1,6 +1,6 @@
 pub struct AoC;
 
-impl advent_of_code::Day for AoC {
+impl advent_of_rust::Day for AoC {
     fn p1(&self, data: String) {
         let (numbers, boards) = data_parser(data);
         if let Some((num, board)) = call_numbers(numbers, boards) {

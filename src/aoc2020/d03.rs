@@ -1,7 +1,7 @@
 // TODO: solve this again?
 pub struct AoC;
 
-impl advent_of_code::Day for AoC {
+impl advent_of_rust::Day for AoC {
     // TODO: what is part 1 and 2 for this?
     fn p1(&self, data: String) {
         let grid = prepare_map(&data);

@@ -1,7 +1,7 @@
 
 pub struct AoC;
 
-impl advent_of_code::Day for AoC {
+impl advent_of_rust::Day for AoC {
     fn p1(&self, data: String) {
         let data = data.lines()
         .map(|x| x.trim().parse().unwrap())

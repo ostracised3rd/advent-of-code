@@ -2,7 +2,7 @@ use prse::parse;
 
 pub struct AoC;
 
-impl advent_of_code::Day for AoC {
+impl advent_of_rust::Day for AoC {
     fn p1(&self, data: String) {
         let lines = data.lines()
             .map(|l| parse!(l, "{}-{} {}: {}"))

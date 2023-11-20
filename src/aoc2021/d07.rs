@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 pub struct AoC;
 
-impl advent_of_code::Day for AoC {
+impl advent_of_rust::Day for AoC {
     fn p1(&self, data: String) {
         let data = data.split(',').map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
         let res = p1(data);
