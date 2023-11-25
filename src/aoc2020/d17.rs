@@ -60,7 +60,7 @@ fn hypercube(w: &str) -> Vec<Vec<Vec<Vec<i32>>>> {
 }
 
 // p1
-fn others(x: &i32, y: &i32, z: &i32, data: &Vec<Vec<Vec<i32>>>) -> i32 {
+fn _others(x: &i32, y: &i32, z: &i32, data: &Vec<Vec<Vec<i32>>>) -> i32 {
     let mut res = 0;
 
     for zp in z-1..=z+1 {
@@ -89,7 +89,7 @@ fn others(x: &i32, y: &i32, z: &i32, data: &Vec<Vec<Vec<i32>>>) -> i32 {
 }
 
 
-fn next_gen(data: &Vec<Vec<Vec<i32>>>)  ->  Vec<Vec<Vec<i32>>> {
+fn _next_gen(data: &Vec<Vec<Vec<i32>>>)  ->  Vec<Vec<Vec<i32>>> {
    
     let mut z_axis : Vec<Vec<Vec<i32>>> = Vec::new();
     for z in -1..=data.len() as i32  {
@@ -110,7 +110,7 @@ fn next_gen(data: &Vec<Vec<Vec<i32>>>)  ->  Vec<Vec<Vec<i32>>> {
                 };
                 
                 // println!("corr: z{} y{} x{} c{}", &z, &y, &x, &cell);
-                let other = others(&x, &y, &z, data);
+                let other = _others(&x, &y, &z, data);
                 // println!("other: {}", &other);
 
                 let cell = if (cell == 1 && [3, 4].contains(&other)) ||
@@ -293,6 +293,6 @@ mod tests {
         ];
 
 
-        assert_eq!(res, next_gen(&cubed(data)))
+        assert_eq!(res, _next_gen(&cubed(data)))
     }
 }

@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 pub struct AoC;
 
 impl advent_of_rust::Day for AoC {
@@ -60,7 +58,7 @@ fn computer(switch: i32, data: &Vec<(&str, i32)>) -> (bool, i32) {
         if index == switch {
             println!("{} {:?}", &switch, data);
             match data[index as usize] {
-                ("jmp", i) => { index += 1; },
+                ("jmp", _i) => { index += 1; },
                 ("nop", i) => { index += i;},
                 (_, _) => { panic!("what??") }
             }
@@ -69,7 +67,7 @@ fn computer(switch: i32, data: &Vec<(&str, i32)>) -> (bool, i32) {
         match data[index as usize] {
             ("acc", i) => { acc += i; index += 1;},
             ("jmp", i) => { index += i; },
-            ("nop", i) => { index += 1; },
+            ("nop", _i) => { index += 1; },
             (_, _) => { panic!("what??") }
         }
 

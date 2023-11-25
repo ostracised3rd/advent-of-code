@@ -160,6 +160,7 @@ dotted black bags contain no other bags.";
         assert_eq!(res, p1_possible_bags( HashSet::<String>::new(), "shiny gold", data))
     }
 
+    #[test]
     fn p2_bag_count() {
         let data = "shiny gold bags contain 2 dark red bags.
 dark red bags contain 2 dark orange bags.

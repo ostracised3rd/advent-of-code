@@ -95,7 +95,7 @@ mod tests {
             117, 150, 182, 127, 219, 299, 277, 309, 576,
         ];
 
-        let poi = 127;
+        let _poi = 127;
 
         assert_eq!(62, seek_n_destroy(127, &data));
     }
