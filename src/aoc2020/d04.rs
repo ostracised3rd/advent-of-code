@@ -162,7 +162,6 @@ fn p2_validate(passport: &Vec<Vec<&str>>) -> u32 {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use advent_of_rust::Day;
 
     #[test]
     fn data_parser() {

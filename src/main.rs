@@ -6,6 +6,7 @@ use tracing::error;
 // mod lib;
 mod aoc2020;
 mod aoc2021;
+mod aoc2023;
 
 fn main() {
     tracing_subscriber::fmt::init();
@@ -37,6 +38,7 @@ fn main() {
     match year {
         "2020" =>  aoc2020::run_day(day.to_owned(), part.to_owned()),
         "2021" =>  aoc2021::run_day(day.to_owned(), part.to_owned()),
+        "2023" =>  aoc2023::run_day(day.to_owned(), part.to_owned()),
         _ => error!("year should be 2020 or 2021 not {year}")
     }
 }
