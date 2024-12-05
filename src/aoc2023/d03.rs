@@ -98,7 +98,7 @@ fn adj_numbers(num: HashMap<Coords, char>, sym: HashMap<Coords, char>) -> Vec<i6
     let mut used = HashMap::<Coords, bool>::new();
 
     for (k, _) in sym.iter() {
-        let coords = vec![
+        let coords = [
             Coords{x: k.x-1, y: k.y-1},
             Coords{x: k.x-1, y: k.y},
             Coords{x: k.x-1, y: k.y+1},
@@ -128,7 +128,7 @@ fn gear_numbers(num: HashMap<Coords, char>, sym: HashMap<Coords, char>) -> Vec<i
     for (k, _) in sym.iter() {
         let mut used = HashMap::<Coords, bool>::new();
         let mut adj = Vec::<i64>::new(); 
-        let coords = vec![
+        let coords = [
             Coords{x: k.x-1, y: k.y-1},
             Coords{x: k.x-1, y: k.y},
             Coords{x: k.x-1, y: k.y+1},

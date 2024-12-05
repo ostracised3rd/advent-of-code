@@ -64,7 +64,7 @@ fn similarity(l1: Vec<i64>, m2: HashMap<i64, i64>) -> i64 {
     let mut res = 0;
     for row in l1 {
         let mult = m2.get(&row).unwrap_or(&0);
-        res += (row * *mult);
+        res +=  row * *mult;
     }
 
     res

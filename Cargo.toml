@@ -11,3 +11,4 @@ tracing-subscriber = { version = "0.3.19", features = ["time"] }
 prse = "1.2.1"
 clap ={ version = "4.5.21", features = ["cargo"] }
 time = "=0.3.36"
+regex = "1.11.1"

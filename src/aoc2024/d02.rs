@@ -20,7 +20,6 @@ fn data_parser(raw: String) -> Vec<Vec<i64>> {
     raw.lines()
         .map(|line| {
             line.split_whitespace()
-                .into_iter()
                 .map(|a| a.parse::<i64>().unwrap())
                 .collect()
         })
@@ -38,9 +37,7 @@ fn is_safe(row: &Vec<i64>, _t: i64) -> i64 {
     let dir =  (dif) / (dif).abs();
     let mut s = row[0];
     for i in 1..row.len() {
-        let min = (dir * 1) + s;
-        let max = (dir * 3) + s;
-        if dir * row[i] < dir * min || dir * row[i] > dir * max {
+        if dir * row[i] < 1 + s || dir * row[i] > 3 + s {
             return 0
         }
 
