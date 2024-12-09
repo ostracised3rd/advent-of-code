@@ -3,10 +3,10 @@ use std::collections::HashMap;
 pub struct AoC;
 
 impl advent_of_rust::Day for AoC {
-    fn p1(&self, _data: String) {
-        // let (l1, l2) = data_parser(data);
-        // let res = difference(l1, l2);
-        // dbg!(res);
+    fn p1(&self, data: String) {
+        let (map_list, actor) = data_parser(data);
+        let res = walking(actor, map_list);
+        dbg!(res);
     }
     
     fn p2(&self, _data: String) {
@@ -17,12 +17,22 @@ impl advent_of_rust::Day for AoC {
     }
 }
 
-
+#[derive(PartialEq, Eq, Clone, Copy, Hash, Debug)]
 struct Point {
     x: usize,
     y: usize,
 }
 
+impl Point {
+    fn new(x: i64, y: i64) -> Self {
+        Point {
+            x: x as usize,
+            y: y as usize,
+        }
+    } 
+}
+
+#[derive(Clone, Copy, Debug)]
 struct Dir {
     x: i64,
     y: i64,
@@ -43,58 +53,99 @@ const Directions: [Dir; 4] = [
 ];
 
 
-
+#[derive(Debug)]
 struct Actor {
-    location: Point,
-    direction: Dir,
+    loc: Point,
+    dir: Dir,
+    dir_index: usize,
+    walk: HashMap<Point, i64>,
 }
 
 impl Actor {
-    fn step(&mut self) {
-        
+    fn new(loc: Point) -> Self {
+        Actor {
+            loc: loc.clone(),
+            walk: HashMap::from([(loc, 1)]),
+            dir: UP,
+            dir_index:  0,
+        }
+    }
+
+    fn set_step(&mut self, next: Point) {
+        self.loc = next;
+        self.walk.entry(next).and_modify(|c| *c += 1).or_insert(1);
+    }
+
+    fn turn(&mut self) {
+        self.dir_index = (self.dir_index + 1) % 4;
+        self.dir = Directions[self.dir_index];
+    }
+
+    fn next(&self) -> (i64, i64) {
+        (self.loc.x as i64 + self.dir.x, self.loc.y as i64 + self.dir.y)
+    }
+
+    fn step_count(&self) -> i64 {
+        self.walk.len() as i64
     }
 }
 
 
-fn data_parser(raw: String) -> (Matrix, Matrix, Actor) {
+fn data_parser(raw: String) -> (Matrix, Actor) {
     let mut map_list: Matrix = Vec::new();
-    let mut walk_list: Matrix = Vec::new();
-    let mut actor: Actor = Actor{location: Point{x:0, y:0}, direction: UP}; 
+    let mut start = Point{x:0, y:0};
 
     for (y, line) in raw.lines().enumerate() {
         map_list.push(Vec::new());
-        walk_list.push(Vec::new());
         for (x, c) in line.chars().enumerate() {
             match c {
                 '.' => {
                     map_list[y].push(0);
-                    walk_list[y].push(0);
                 },
                 '#' => {
                     map_list[y].push(1);
-                    walk_list[y].push(0);
                 },
                 '^' => {
                     map_list[y].push(0);
-                    walk_list[y].push(1);
-                    actor.location = Point{x, y};
+                    start =  Point{x, y};
                 },
                 _ => {
                     map_list[y].push(0);
-                    walk_list[y].push(0);
                 }
             }
         }
     }
 
-    (map_list, walk_list, actor)
+    (map_list, Actor::new(start))
+}
+
+fn walking(mut actor: Actor, map: Matrix) -> i64 {
+    loop {
+        if actor.loc.x == 0 || 
+            actor.loc.x == map[0].len() - 1 ||
+            actor.loc.y == 0 || 
+            actor.loc.y == map.len() - 1 {
+            break;
+        }
+
+        let (x, y) = actor.next();
+        let p = Point::new(x, y);
+
+        if map[p.y][p.x] == 1 {
+            actor.turn();
+        } else {
+            actor.set_step(p);
+        }
+    }
+
+    return actor.step_count()
 }
 
 mod tests {
     use super::*;
 
     #[test]
-    fn map_creation() {
+    fn walking_test() {
         let raw = "....#.....
 .........#
 ..........
@@ -106,9 +157,9 @@ mod tests {
 #.........
 ......#...";
 
-        let (map_list, walk_list, start) = data_parser(raw.to_string());
-        // assert_eq!(vec![3,4,2,1,3,3], l1);
-        // assert_eq!(vec![4,3,5,3,9,3], l2);
+        let (map_list, actor) = data_parser(raw.to_string());
+        let count = walking(actor, map_list);
+        assert_eq!(41, count);
     }
 
 //     #[test]
