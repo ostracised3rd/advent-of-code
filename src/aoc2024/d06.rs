@@ -5,8 +5,9 @@ pub struct AoC;
 impl advent_of_rust::Day for AoC {
     fn p1(&self, data: String) {
         let (map_list, actor) = data_parser(data);
-        let res = walking(actor, map_list);
-        dbg!(res);
+        let actor = walking(actor, &map_list);
+        let count = actor.step_count();
+        dbg!(count);
     }
     
     fn p2(&self, _data: String) {
@@ -45,7 +46,7 @@ const RIGHT: Dir = Dir{x:1, y:0};
 const DOWN: Dir = Dir{x:0, y:1};
 const LEFT: Dir = Dir{x:-1, y:0};
 
-const Directions: [Dir; 4] = [
+const DIRECTIONS: [Dir; 4] = [
     UP,
     RIGHT,
     DOWN,
@@ -58,6 +59,7 @@ struct Actor {
     loc: Point,
     dir: Dir,
     dir_index: usize,
+    turns: HashMap<Point, Dir>,
     walk: HashMap<Point, i64>,
 }
 
@@ -65,6 +67,7 @@ impl Actor {
     fn new(loc: Point) -> Self {
         Actor {
             loc: loc.clone(),
+            turns: HashMap::new(),
             walk: HashMap::from([(loc, 1)]),
             dir: UP,
             dir_index:  0,
@@ -76,9 +79,10 @@ impl Actor {
         self.walk.entry(next).and_modify(|c| *c += 1).or_insert(1);
     }
 
-    fn turn(&mut self) {
+    fn turn(&mut self, p: Point) {
         self.dir_index = (self.dir_index + 1) % 4;
-        self.dir = Directions[self.dir_index];
+        self.dir = DIRECTIONS[self.dir_index];
+        self.turns.insert(p, DIRECTIONS[self.dir_index]);
     }
 
     fn next(&self) -> (i64, i64) {
@@ -119,7 +123,7 @@ fn data_parser(raw: String) -> (Matrix, Actor) {
     (map_list, Actor::new(start))
 }
 
-fn walking(mut actor: Actor, map: Matrix) -> i64 {
+fn walking(mut actor: Actor, map: &Matrix) -> Actor {
     loop {
         if actor.loc.x == 0 || 
             actor.loc.x == map[0].len() - 1 ||
@@ -132,13 +136,24 @@ fn walking(mut actor: Actor, map: Matrix) -> i64 {
         let p = Point::new(x, y);
 
         if map[p.y][p.x] == 1 {
-            actor.turn();
+            actor.turn(p);
         } else {
             actor.set_step(p);
         }
     }
 
-    return actor.step_count()
+    return actor
+}
+
+
+fn insert_loop(mut actor: Actor, map: &Matrix) -> Actor {
+
+    for (k, v) in actor.turns.iter() {
+        
+    }
+    
+
+    return actor
 }
 
 mod tests {
@@ -158,7 +173,8 @@ mod tests {
 ......#...";
 
         let (map_list, actor) = data_parser(raw.to_string());
-        let count = walking(actor, map_list);
+        let actor = walking(actor, &map_list);
+        let count = actor.step_count();
         assert_eq!(41, count);
     }
 
